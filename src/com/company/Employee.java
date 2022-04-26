@@ -42,4 +42,5 @@ public class Employee {
     public int setWorkersSalary() {
         return workersSalary;
     }
+
 }
