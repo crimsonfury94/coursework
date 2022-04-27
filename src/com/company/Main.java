@@ -1,16 +1,34 @@
 package com.company;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.function.ToIntFunction;
+
 public class Main {
     public static Employee[] employees = new Employee[10];
 
     public static String toString(Employee obj) {
         return obj.getWorkerName() + " " + obj.getDepartment() + " " + obj.getWorkersSalary();
     }
-    public static void allEmployee (Employee [] arr) {
+
+    public static void allEmployee(Employee[] arr) {
         for (Employee employee : arr) {
             System.out.println(toString(employee));
         }
+
     }
+
+    public static void salarySum(Employee[] employees, ToIntFunction<Employee> salary) {
+        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
+        System.out.println(Arrays.stream(employees).mapToInt(salary).sum() * daysInCurrentMonth);
+    }
+
+    public static void minSalary() {
+
+        }
+
 
     public static void main(String[] args) {
         employees[0] = new Employee("Шушанина Валентина Юрьевна", 1, 25000);
@@ -26,5 +44,6 @@ public class Main {
 
 
         allEmployee(employees);
+        salarySum(employees, Employee::getWorkersSalary);
     }
 }
