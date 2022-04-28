@@ -1,21 +1,18 @@
 package com.company;
 
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicIntegerArray;
-
 public class Employee {
     private final String workerName;
     private final int department;
-    private final int workersSalary;
-    public static int id;
-    public final AtomicInteger employee = new AtomicInteger(1);
+    private final double workersSalary;
+    private final int id;
+    private static int counter = 1;
 
 
-    public Employee(String workerName, int department, int workersSalary) {
+    public Employee(String workerName, int department, double workersSalary) {
         this.workerName = workerName;
         this.department = department;
         this.workersSalary = workersSalary;
-        id = employee.getAndIncrement();
+        this.id = counter++;
 
     }
 
@@ -27,19 +24,19 @@ public class Employee {
         return department;
     }
 
-    public int getWorkersSalary() {
+    public double getWorkersSalary() {
         return workersSalary;
     }
 
     public int getId() {
-        return id++;
+        return id;
     }
 
     public int setDepartment() {
         return department;
     }
 
-    public int setWorkersSalary() {
+    public double setWorkersSalary() {
         return workersSalary;
     }
 
