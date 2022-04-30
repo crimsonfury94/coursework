@@ -64,9 +64,11 @@ public class Main {
 
     public static void upSalary(Employee [] salaryPercent) {
         System.out.println("Зарплата сотрудников после индексации стала: ");
-        double percent = 12.0;
+        int percent = 12;
         for (Employee percents : salaryPercent) {
-            System.out.println("ID № " + percents.getId() + " " + percents.getWorkerName() + " " + percents.getDepartment() + " " + percents.setWorkersSalary(percents.getWorkersSalary() * percent + percents.getWorkersSalary()));
+            double salaryAfter = (percents.getWorkersSalary() * percent/100) + percents.getWorkersSalary();
+            percents.setWorkersSalary(salaryAfter);
+            System.out.println("ID № " + percents.getId() + " " + percents.getWorkerName() + " " + percents.getDepartment() + " " + salaryAfter);
         }
         System.out.println("----------");
 
