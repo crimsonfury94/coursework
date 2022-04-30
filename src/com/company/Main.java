@@ -62,6 +62,19 @@ public class Main {
         System.out.println("----------");
     }
 
+    public static void upSalary(Employee [] salaryPercent) {
+        System.out.println("Зарплата сотрудников после индексации стала: ");
+        double percent = 12.0;
+        for (Employee percents : salaryPercent) {
+            System.out.println("ID № " + percents.getId() + " " + percents.getWorkerName() + " " + percents.getDepartment() + " " + percents.setWorkersSalary(percents.getWorkersSalary() * percent + percents.getWorkersSalary()));
+        }
+        System.out.println("----------");
+
+    }
+
+    public static void department()  {
+
+    }
 
     public static void main(String[] args) {
         employees[0] = new Employee("Шушанина Валентина Юрьевна", 1, 25000);
@@ -82,5 +95,7 @@ public class Main {
         minSalary(employees);
         averageSalary(employees);
         list(employees);
+        upSalary(employees);
+
     }
 }

@@ -2,9 +2,9 @@ package com.company;
 
 public class Employee {
     private final String workerName;
-    private final int department;
-    private final double workersSalary;
-    private final int id;
+    private int department;
+    private double workersSalary;
+    private int id;
     private static int counter = 1;
 
 
@@ -32,12 +32,12 @@ public class Employee {
         return id;
     }
 
-    public int setDepartment() {
-        return department;
+    public void setDepartment(int department) {
+        this.department = department;
     }
 
-    public double setWorkersSalary() {
-        return workersSalary;
+    public void setWorkersSalary(double v) {
+        this.workersSalary = workersSalary;
     }
 
 }
