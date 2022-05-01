@@ -4,7 +4,7 @@ public class Employee {
     private final String workerName;
     private int department;
     private double workersSalary;
-    private int id;
+    private final int id;
     private static int counter = 1;
 
 
@@ -36,7 +36,7 @@ public class Employee {
         this.department = department;
     }
 
-    public void setWorkersSalary(double v) {
+    public void setWorkersSalary(double workersSalary) {
         this.workersSalary = workersSalary;
     }
 
