@@ -74,9 +74,15 @@ public class Main {
 
     }
 
-    public static void department()  {
+    public static int workersDepartment(Employee [] departments)  {
+        for (Employee department : departments) {
+            if (department.getDepartment() == 3) {
+                System.out.println(department.getWorkerName() + " " + department.getDepartment());
+            }
+        }
+        return workersDepartment(departments);
+       }
 
-    }
 
     public static void main(String[] args) {
         employees[0] = new Employee("Шушанина Валентина Юрьевна", 1, 25000);
@@ -98,6 +104,7 @@ public class Main {
         averageSalary(employees);
         list(employees);
         upSalary(employees);
+        workersDepartment(employees);
 
     }
 }
