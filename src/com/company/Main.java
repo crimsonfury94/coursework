@@ -1,27 +1,31 @@
 package com.company;
 
 public class Main {
-    public static Employee[] employees = new Employee[10];
+    private static Employee[] employees = new Employee[10];
 
-    public static String toString(Employee obj) {
+    private static String toString(Employee obj) {
         return "ID № " + obj.getId() + " " + obj.getWorkerName() + " " + obj.getDepartment() + " " + obj.getWorkersSalary();
     }
 
-    public static void allEmployee(Employee[] arr) {
+    private static void allEmployee(Employee[] arr) {
         for (Employee employee : arr) {
             System.out.println(toString(employee));
         }
     }
 
-    public static void salarySum(Employee[] employees) {
+    private static double salarySum(Employee[] employees) {
         double sum = 0;
         for (Employee employee : employees) {
             sum += employee.getWorkersSalary();
         }
-        System.out.println("Общие затраты на зарплату в месяц составляют " + sum + " рублей.");
+        return sum;
     }
 
-    public static void maxSalary(Employee[] employees) {
+    private static void totalSum(Employee[] employees) {
+        System.out.println("Общие затраты на зарплату в месяц составляют " + salarySum(employees) + " рублей.");
+    }
+
+    private static void maxSalary(Employee[] employees) {
         Employee maxValue = employees[0];
         for (int i = 1; i < employees.length; i++) {
             if (employees[i].getWorkersSalary() > maxValue.getWorkersSalary()) {
@@ -31,7 +35,7 @@ public class Main {
         System.out.println("Сотрудник с максимальной зарплатой " + maxValue.getWorkersSalary() + " рублей: " + "ID № " + maxValue.getId() + " " + maxValue.getWorkerName() + " из отдела № " + maxValue.getDepartment());
     }
 
-    public static void minSalary(Employee[] employees) {
+    private static void minSalary(Employee[] employees) {
         Employee minValue = employees[0];
         for (int i = 1; i < employees.length; i++) {
             if (employees[i].getWorkersSalary() < minValue.getWorkersSalary()) {
@@ -41,21 +45,26 @@ public class Main {
         System.out.println("Сотрудник с минимальной зарплатой " + minValue.getWorkersSalary() + " рублей: " + "ID № " + minValue.getId() + " " + minValue.getWorkerName() + " из отдела № " + minValue.getDepartment());
     }
 
-    public static void averageSalary(Employee[] employees) {
-        double average = 0;
-        for (Employee salary : employees) {
-            average += salary.getWorkersSalary();
-        }
-        System.out.println("Среднаяя зарплата сотрудников составляет " + average / employees.length + " рублей.");
+    private static void averageSalary(Employee[] employees) {
+        double average = salarySum(employees) / employees.length;
+        System.out.println("Среднаяя зарплата сотрудников составляет " + average + " рублей.");
     }
 
-    public static void list(Employee[] names) {
+    private static void list(Employee[] names) {
         for (Employee name : names) {
             System.out.println(name.getWorkerName());
         }
     }
 
-
+    private static void upSalary(Employee[] salaryPercent) {
+        System.out.println("Зарплата сотрудников после индексации стала: ");
+        int percent = 12;
+        for (Employee percents : salaryPercent) {
+            double salaryAfter = (percents.getWorkersSalary() * percent / 100) + percents.getWorkersSalary();
+            percents.setWorkersSalary(salaryAfter);
+            System.out.println("ID № " + percents.getId() + " " + percents.getWorkerName() + " " + percents.getDepartment() + " " + salaryAfter);
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -73,7 +82,7 @@ public class Main {
         System.out.println("----------");
         allEmployee(employees);
         System.out.println("----------");
-        salarySum(employees);
+        totalSum(employees);
         System.out.println("----------");
         maxSalary(employees);
         System.out.println("----------");
@@ -84,5 +93,6 @@ public class Main {
         System.out.println("Список сотрудников: ");
         list(employees);
         System.out.println("----------");
+        upSalary(employees);
     }
 }
