@@ -66,9 +66,74 @@ public class Main {
         }
     }
 
+    private static void employeesDepartment(Employee[] department) {
+        for (Employee departments : department) {
+            if (departments.getDepartment() == 3) {
+                System.out.println("ID №" + departments.getId() + " " + departments.getWorkerName() + " " + departments.getWorkersSalary());
+            }
+        }
+    }
+
+    private static double departmentSalarySum(Employee[] department) {
+        double sum = 0;
+        for (Employee employee : department) {
+            if (employee.getDepartment() == 5){
+                sum += employee.getWorkersSalary();
+            }
+        }
+        return sum;
+    }
+
+    private static void departmentTotalSalary(Employee[] employees) {
+        System.out.println("Общая сумма зарплат по отделу составляют: " + departmentSalarySum(employees) + " рублей.");
+    }
+
+    private static void departmentMinSalary(Employee[] department) {
+        Employee minSalary = department[0];
+        for (int i = 1; i < department.length; i++) {
+            if (department[i].getDepartment() == 3 && department[i].getWorkersSalary() < minSalary.getWorkersSalary()) {
+                minSalary = department[i];
+            }
+        }
+        System.out.println("Сотрудник с минимальной зарплатой " + minSalary.getWorkersSalary() + " рублей: " + "ID № " + minSalary.getId() + " " + minSalary.getWorkerName());
+    }
+
+    private static void departmentMaxSalary(Employee[] department) {
+        Employee maxSalary = department[0];
+        for (int i = 1; i < department.length; i++) {
+            if (department[i].getDepartment() == 3 && department[i].getWorkersSalary() > maxSalary.getWorkersSalary()) {
+                maxSalary = department[i];
+            }
+        }
+        System.out.println("Сотрудник с максимальной зарплатой " + maxSalary.getWorkersSalary() + " рублей: " + "ID № " + maxSalary.getId() + " " + maxSalary.getWorkerName());
+    }
+
+    private static void departmentAverage(Employee [] department) {
+        double average = 0;
+        for (int i = 1; i < department.length; i++) {
+            if (department[i].getDepartment() == 5) {
+                average = departmentSalarySum(department) / department.length;
+            }
+        }
+        System.out.println(average);
+    }
+
+    private static void departmentUpSalary(Employee[] department) {
+        System.out.println("Зарплата сотрудников после индексации стала: ");
+        int percent = 16;
+        for (Employee percents : department) {
+            if (percents.getDepartment() == 3) {
+                double departmentSalaryAfter = (percents.getWorkersSalary() * percent / 100) + percents.getWorkersSalary();
+                percents.setWorkersSalary(departmentSalaryAfter);
+                System.out.println("ID № " + percents.getId() + " " + percents.getWorkerName() + " " + percents.getDepartment() + " " + departmentSalaryAfter);
+            }
+        }
+    }
+
+
 
     public static void main(String[] args) {
-        employees[0] = new Employee("Бусина Валентина Юрьевна", 1, 25000);
+        employees[0] = new Employee("Бусина Валентина Юрьевна", 3, 25000);
         employees[1] = new Employee("Семенов Степан Олегович", 2, 27000);
         employees[2] = new Employee("Дарницкий Петр Семенович", 3, 29000);
         employees[3] = new Employee("Петров Александр Валентинович", 4, 22000);
@@ -94,5 +159,18 @@ public class Main {
         list(employees);
         System.out.println("----------");
         upSalary(employees);
+        System.out.println("----------");
+        System.out.println("Список сотрудников из отдела № 3: ");
+        employeesDepartment(employees);
+        System.out.println("----------");
+        departmentTotalSalary(employees);
+        System.out.println("----------");
+        departmentMinSalary(employees);
+        System.out.println("----------");
+        departmentMaxSalary(employees);
+        System.out.println("----------");
+        departmentUpSalary(employees);
+        System.out.println("----------");
+        departmentAverage(employees);
     }
 }
