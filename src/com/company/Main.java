@@ -66,28 +66,6 @@ public class Main {
         }
     }
 
-    private static void employeesDepartment(Employee[] department) {
-        for (Employee departments : department) {
-            if (departments.getDepartment() == 3) {
-                System.out.println("ID №" + departments.getId() + " " + departments.getWorkerName() + " " + departments.getWorkersSalary());
-            }
-        }
-    }
-
-    private static double departmentSalarySum(Employee[] department) {
-        double sum = 0;
-        for (Employee employee : department) {
-            if (employee.getDepartment() == 5){
-                sum += employee.getWorkersSalary();
-            }
-        }
-        return sum;
-    }
-
-    private static void departmentTotalSalary(Employee[] employees) {
-        System.out.println("Общая сумма зарплат по отделу составляют: " + departmentSalarySum(employees) + " рублей.");
-    }
-
     private static void departmentMinSalary(Employee[] department) {
         Employee minSalary = department[0];
         for (int i = 1; i < department.length; i++) {
@@ -108,19 +86,35 @@ public class Main {
         System.out.println("Сотрудник с максимальной зарплатой " + maxSalary.getWorkersSalary() + " рублей: " + "ID № " + maxSalary.getId() + " " + maxSalary.getWorkerName());
     }
 
-    private static void departmentAverage(Employee [] department) {
-        double average = 0;
-        for (int i = 1; i < department.length; i++) {
-            if (department[i].getDepartment() == 5) {
-                average = departmentSalarySum(department) / department.length;
+    private static double departmentSalarySum(Employee[] department) {
+        double sum = 0;
+        for (Employee employee : department) {
+            if (employee.getDepartment() == 3) {
+                sum += employee.getWorkersSalary();
             }
         }
-        System.out.println(average);
+        return sum;
+    }
+
+    private static void departmentTotalSalary(Employee[] employees) {
+        System.out.println("Общая сумма зарплат по отделу составляют: " + departmentSalarySum(employees) + " рублей.");
+    }
+
+    private static void departmentAverage(Employee[] department) {
+        int num = 0;
+        double average;
+        for (Employee employee : department) {
+            if (employee.getDepartment() == 3) {
+                num++;
+            }
+        }
+        average = departmentSalarySum(department) / num;
+        System.out.println("Средняя зарплата по отделу составляет: " + average);
     }
 
     private static void departmentUpSalary(Employee[] department) {
         System.out.println("Зарплата сотрудников после индексации стала: ");
-        int percent = 16;
+        int percent = 10;
         for (Employee percents : department) {
             if (percents.getDepartment() == 3) {
                 double departmentSalaryAfter = (percents.getWorkersSalary() * percent / 100) + percents.getWorkersSalary();
@@ -130,6 +124,27 @@ public class Main {
         }
     }
 
+    private static void employeesDepartment(Employee[] department) {
+        for (Employee departments : department) {
+            if (departments.getDepartment() == 3) {
+                System.out.println("ID № " + departments.getId() + " " + departments.getWorkerName() + " " + departments.getWorkersSalary());
+            }
+        }
+    }
+
+    private static void lessNumber(Employee [] num) {
+        int number = 45000;
+        for (int i = 0;num[i].getWorkersSalary()< number; i++) {
+            System.out.println("ID № " + num[i].getId()+ " " + num[i].getWorkerName() + " " + num[i].getWorkersSalary());
+        }
+    }
+
+    private static void moreNumber(Employee[] num) {
+        int number = 25000;
+        for (int i = 0; num[i].getWorkersSalary() >= number; i++) {
+                System.out.println("ID № " + num[i].getId()+ " " + num[i].getWorkerName() + " " + num[i].getWorkersSalary());
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -160,17 +175,23 @@ public class Main {
         System.out.println("----------");
         upSalary(employees);
         System.out.println("----------");
-        System.out.println("Список сотрудников из отдела № 3: ");
-        employeesDepartment(employees);
-        System.out.println("----------");
-        departmentTotalSalary(employees);
-        System.out.println("----------");
         departmentMinSalary(employees);
         System.out.println("----------");
         departmentMaxSalary(employees);
         System.out.println("----------");
-        departmentUpSalary(employees);
+        departmentTotalSalary(employees);
         System.out.println("----------");
         departmentAverage(employees);
+        System.out.println("----------");
+        departmentUpSalary(employees);
+        System.out.println("----------");
+        System.out.println("Список сотрудников из отдела № 3: ");
+        employeesDepartment(employees);
+        System.out.println("----------");
+        lessNumber(employees);
+        System.out.println("----------");
+        moreNumber(employees);
+        System.out.println("----------");
+
     }
 }
